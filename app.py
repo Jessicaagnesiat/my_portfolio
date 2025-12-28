@@ -553,10 +553,8 @@ from typing import Optional
 import streamlit as st
 
 # Optional: provide a simple divider if render_divider isn't defined elsewhere
-try:
-    render_divider  # type: ignore
-except NameError:
-    def render_divider() -> None:
+if "render_divider" not in globals():
+    def render_divider():
         st.markdown("---")
 
 
@@ -718,3 +716,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+    
