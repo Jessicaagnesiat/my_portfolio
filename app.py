@@ -16,21 +16,13 @@ st.set_page_config(
 # Dekorator untuk meng-cache data dan tidak memuatnya ulang setiap kali
 @st.cache_data
 def generate_dashboard_data():
-    # Membuat range tanggal dari 1 Januari 2024 selama 30 hari
     dates = pd.date_range('2024-01-01', periods=30)
 
     # Mengembalikan DataFrame dengan kolom Date, Sales, Visitors, dan Conversion
     return pd.DataFrame({
-        # Kolom tanggal
         'Date': dates,
-
-        # Kolom penjualan dengan nilai random antara 1000-5000
         'Sales': np.random.randint(1000, 5000, 30),
-
-        # Kolom pengunjung dengan nilai random antara 500-3000
         'Visitors': np.random.randint(500, 3000, 30),
-
-        # Kolom konversi dengan nilai random antara 0.01-0.1
         'Conversion': np.random.uniform(0.01, 0.1, 30)
     })
 
@@ -48,19 +40,13 @@ def get_skills_data():
 
 # Dekorator untuk meng-cache data proyek
 @st.cache_data
-# Fungsi untuk mengembalikan data proyek dengan kemampuan filter
 def get_projects_data():
-    # Membuat list berisi data-data proyek
     projects = [
         # Proyek pertama: E-commerce Sales Analysis
         {
-            # Judul proyek dengan emoji
             'title': '📊 Proyek 1: E-commerce Sales Analysis',
-            # Kategori proyek
             'category': 'EDA',
-            # Tahun proyek dibuat
             'year': 2025,
-            # Deskripsi detail tentang proyek
             'description': '''**Deskripsi:**
 This project focuses on performing an **Exploratory Data Analysis (EDA)** on an E-commerce sales dataset
 to understand sales patterns, customer behavior, and business performance over time.
@@ -84,13 +70,9 @@ to support data-driven decision making.
         },
         # Proyek kedua: Customer Segmentation Dashboard
         {
-            # Judul proyek dengan emoji
             'title': '📈 Proyek 2: Customer Segmentation Dashboard',
-            # Kategori proyek
             'category': 'Dashboard',
-            # Tahun proyek dibuat
             'year': 2025,
-            # Deskripsi detail tentang proyek
             'description': '''**Deskripsi:**
 This project performs an **E-Commerce Customer Segmentation Analysis** using RFM (Recency, Frequency, Monetary) modeling 
 and dashboard visualization to understand customer purchasing behavior and profitability.
@@ -113,56 +95,27 @@ product performance, regional trends, and profitability drivers.
             # Flag apakah proyek memiliki gambar atau tidak
             'has_image': False
         },
-        # Proyek ketiga: Churn Prediction Model
-#        {
-            # Judul proyek dengan emoji
- #           'title': '🤖 Proyek 3: Churn Prediction Model',
-            # Kategori proyek
-  #          'category': 'Prediction',
-            # Tahun proyek dibuat
-   #         'year': 2025,
-            # Deskripsi detail tentang proyek
-#            'description': '''**Deskripsi:**
-#Machine learning model untuk memprediksi customer churn dengan akurasi 85%.
-
-#**Tools:** Python, Scikit-learn, XGBoost
-
-#**Performance:**
-#- Accuracy: 85%
-#- Precision: 0.82
-#- Recall: 0.88''',
-            # Flag apakah proyek memiliki gambar atau tidak
-      #      'has_image': False
-       # }
     ]
 
-    # Mengkonversi list projects menjadi DataFrame dan mengembalikannya
     return pd.DataFrame(projects)
 
 # Fungsi untuk menampilkan garis pemisah
 def render_divider():
-    # Menampilkan garis horizontal sebagai pemisah
     st.markdown("---")
-    # Menampilkan pemisah di sidebar
 
 # Fungsi untuk menampilkan navigasi di sidebar
 def render_sidebar_nav():
-    # Menampilkan judul navigasi di sidebar
-    #st.sidebar.markdown("# 📍 Navigasi")
     st.sidebar.markdown("---")
-    # Membuat tombol radio untuk memilih halaman
+
     st.sidebar.markdown(
     """
         ### Page:
     """)
     page = st.sidebar.radio(
-        # Label untuk radio button
         " Pilih halaman:",
-        # Opsi halaman yang tersedia
         ["🏠 Home", "👤 About", "📁 Project", "📊 Dashboard", "📧 Contact"]
     )
 
-    # Menampilkan pemisah di sidebar
     st.sidebar.markdown("---")
 
     # Menampilkan tautan media sosial di sidebar
@@ -321,37 +274,6 @@ def page_about():
 
     # Menampilkan chart di Streamlit
     st.plotly_chart(fig, use_container_width=True)
-
-    # Menampilkan subheader untuk sertifikasi
-   # st.subheader("📚 Sertifikasi")
-
-    # Membuat 3 kolom untuk menampilkan sertifikasi
-    #cert_col1, cert_col2, cert_col3 = st.columns(3)
-
-    #cert_col1.markdown(
-     #   """
-      ## ✅ Certified, 2022
-        #"""
-    #)
-
-    # Menampilkan sertifikasi SQL di kolom kedua
-    #cert_col2.markdown(
-     #   """
-      #  **SQL for Data Analysis**
-       # ✅ Certified, 2021
-       # """
-    #)
-
-    # Menampilkan sertifikasi Tableau di kolom ketiga
-    #cert_col3.markdown(
-     #   """
-     #   **Data Visualization with Tableau**
-      #  ✅ Certified, 2023
-       # """
-    #)
-
-# asumsi: fungsi-fungsi ini tersedia di tempat lain dalam project
-# from your_module import render_divider, get_projects_data
 
 def page_project():
     # Menampilkan judul halaman dengan emoji
